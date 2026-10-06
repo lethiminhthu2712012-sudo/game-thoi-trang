@@ -2,43 +2,103 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Phối Đồ</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            gap: 40px;
+        }
+        .character-box {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 2px solid #f8bbd0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .character-box img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 250px;
+        }
+        h2 { color: #d81b60; margin-top: 0; }
+        .btn-group { display: flex; gap: 10px; margin-bottom: 10px; }
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ec407a;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover { background-color: #d81b60; }
+    </style>
 </head>
 <body>
-    <div class="game-container">
-        <!-- Cột trái: Hiển thị búp bê -->
-        <div class="avatar-container">
-            <img src="assets/model.png" id="layer-base" class="layer">
-            <img id="layer-hair" class="layer">
-            <img id="layer-top" class="layer">
-            <img id="layer-bottom" class="layer">
-        </div>
 
-        <!-- Cột phải: Tủ đồ -->
-        <div class="wardrobe">
-            <h2>Tủ đồ của bạn</h2>
-            
-            <p><b>Kiểu tóc:</b></p>
-            <div class="item-grid">
-                <button onclick="changeItem('hair', 'assets/hair_1.png')">Tóc 1</button>
-                <button onclick="changeItem('hair', '')">Bỏ tóc</button>
-            </div>
-
-            <p><b>Áo:</b></p>
-            <div class="item-grid">
-                <button onclick="changeItem('top', 'assets/top_1.png')">Áo 1</button>
-                <button onclick="changeItem('top', '')">Bỏ áo</button>
-            </div>
-
-            <p><b>Quần/Váy:</b></p>
-            <div class="item-grid">
-                <button onclick="changeItem('bottom', 'assets/bottom_1.png')">Quần 1</button>
-                <button onclick="changeItem('bottom', '')">Bỏ quần</button>
-            </div>
-        </div>
+<div class="container">
+    <!-- Khung hiển thị nhân vật -->
+    <div class="character-box">
+        <img id="layer-model" src="model.png" alt="Model">
+        <img id="layer-bottom" src="" style="display: none;">
+        <img id="layer-hair" src="" style="display: none;">
     </div>
 
-    <script src="script.js"></script>
+    <!-- Khung điều khiển tủ đồ -->
+    <div class="controls">
+        <h2>Tủ đồ của bạn</h2>
+
+        <label><b>Kiểu tóc:</b></label>
+        <div class="btn-group">
+            <button onclick="changeLayer('layer-hair', 'hair_1.png')">Tóc 1</button>
+            <button onclick="changeLayer('layer-hair', '')">Bỏ tóc</button>
+        </div>
+
+        <label><b>Trang phục / Váy:</b></label>
+        <div class="btn-group">
+            <button onclick="changeLayer('layer-bottom', 'bottom_1.png')">Váy 1</button>
+            <button onclick="changeLayer('layer-bottom', '')">Bỏ váy</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeLayer(layerId, imagePath) {
+        const imgElement = document.getElementById(layerId);
+        if (imagePath !== '') {
+            imgElement.src = imagePath;
+            imgElement.style.display = 'block';
+        } else {
+            imgElement.style.display = 'none';
+        }
+    }
+</script>
+
 </body>
 </html>
