@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Phối Đồ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Cột trái: Hiển thị búp bê -->
+        <div class="avatar-container">
+            <img src="assets/model.png" id="layer-base" class="layer">
+            <img id="layer-hair" class="layer">
+            <img id="layer-top" class="layer">
+            <img id="layer-bottom" class="layer">
+        </div>
+
+        <!-- Cột phải: Tủ đồ -->
+        <div class="wardrobe">
+            <h2>Tủ đồ của bạn</h2>
+            
+            <p><b>Kiểu tóc:</b></p>
+            <div class="item-grid">
+                <button onclick="changeItem('hair', 'assets/hair_1.png')">Tóc 1</button>
+                <button onclick="changeItem('hair', '')">Bỏ tóc</button>
+            </div>
+
+            <p><b>Áo:</b></p>
+            <div class="item-grid">
+                <button onclick="changeItem('top', 'assets/top_1.png')">Áo 1</button>
+                <button onclick="changeItem('top', '')">Bỏ áo</button>
+            </div>
+
+            <p><b>Quần/Váy:</b></p>
+            <div class="item-grid">
+                <button onclick="changeItem('bottom', 'assets/bottom_1.png')">Quần 1</button>
+                <button onclick="changeItem('bottom', '')">Bỏ quần</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
